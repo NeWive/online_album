@@ -60,7 +60,7 @@
 					    albumArrayList = (ArrayList<Album>) session.getAttribute("albumArrayList");
 					}
 				%>
-				<c:if test="${sessionScope.albumArrayList !=null}">
+				<c:if test="<%=!albumArrayList.isEmpty() %>">
 				<c:forEach var="location" begin="0" end="<%=albumArrayList.size()-1%>" step="1">
 					<%
 						Album album = albumArrayList.get(Integer.parseInt(String.valueOf(pageContext.getAttribute("location"))));
