@@ -9,6 +9,11 @@
 	<title>LogIn</title>
 	<link rel="stylesheet" href="./css/init.css">
 	<link rel="stylesheet" href="./css/Index_css.css">
+	<style>
+		#hidden{
+			visibility:hidden;
+		}
+	</style>
 </head>
 
 <body>
@@ -104,6 +109,7 @@
 									<form action="${pageContext.request.contextPath}/comment">
 										<textarea name="input_comment" class="input_comment" cols="90" rows="5" class="line" placeholder="留下你的足迹111"></textarea>
 										<input type="submit" class="line submit" value="评论">
+										<input type="input" class="445" value="${location}" id="hidden" name="location">
 									</form>
 								</div>
 								<div class="other_comment">

@@ -78,7 +78,7 @@ public final class DBKit {
     
     
     /**
-     * <br>user </br>
+     * user 
      */
     static public boolean hasUserName(String name) {
     	if(conn==null) init();
@@ -184,7 +184,7 @@ public final class DBKit {
     
     
     /**
-     * <br>album </br>
+     * album 
      */
     
     public static void main(String[] args) {

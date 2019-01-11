@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import po.User;
 import service.UserService;
 import utility.Global;
 
@@ -40,28 +41,17 @@ public class CommentFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		String username = (String) ((HttpServletRequest)request).getSession().getAttribute("username");
-		if(username!=null) { // validate
-			;
-			// check if user name exists in database
-			if(!Global.inited)
-			{
-				Global.conf_path=request.getServletContext().getRealPath(Global.conf);
-				Global.inited=true;
-			}
-			UserService userService=new UserService();
-			if(userService.findByUserNameService(username) != null) {
-				chain.doFilter(request, response);
-			}
+		User user = (User) ((HttpServletRequest)request).getSession().getAttribute("userInfo");
+		if(user!=null&&!user.isNotValid()) { // validate
+			// check if user login
 		}
 		else {
-			HttpServletResponse resp=(HttpServletResponse) response;
-			resp.sendRedirect("./LogIn.jsp");
-			return;
+//			request.getRequestDispatcher("/index.jsp").forward(request, response);
+//			return;
 		}
 
 		// pass the request along the filter chain
-		//chain.doFilter(request, response);
+		chain.doFilter(request, response);
 	}
 
 	/**

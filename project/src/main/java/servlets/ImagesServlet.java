@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -34,11 +35,15 @@ public class ImagesServlet extends HttpServlet {
         Global.conf_path=request.getServletContext().getRealPath(Global.conf);
         response.setCharacterEncoding("utf-8");
         request.setCharacterEncoding("utf-8");
+//        PrintWriter out=response.getWriter();
+//        try {
+        
         String method = request.getParameter("method");
         HttpSession session = request.getSession();
         if(method.equals("findall")){
             int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
             albumArrayList = albumService.findAllAlbums(pageNumber);
+//            out.println(pageNumber+albumArrayList.toString());
             session.setAttribute("albumArrayList", albumArrayList);
             request.getRequestDispatcher("/index.jsp").forward(request, response);
 
@@ -114,6 +119,9 @@ public class ImagesServlet extends HttpServlet {
             session.setAttribute("album", album);
             request.getRequestDispatcher("/DisplayImages.jsp").forward(request, response);
         }
+//        }catch (Exception e) {
+//			e.printStackTrace(out);
+//		}
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
